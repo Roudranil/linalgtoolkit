@@ -50,7 +50,7 @@ class ElementaryOps(object):
         self.m, self.n = self.matrix.shape
         if type not in ['row', 'congruence']:
             raise ValueError("type must be one of ['row', 'congurence']")
-        if type == 'congruence' and self.matrix!=self.matrix.transpose():
+        if type == 'congruence' and (self.matrix!=self.matrix.transpose()).any():
             raise ValueError("Congruence operations can only be performed on symmetric matrices.")
         self.type = type
         self.verbose = verbose
@@ -131,7 +131,7 @@ class ElementaryOps(object):
                 var = args
             if var[0] == 'end':
                 break
-            if str(var[0]) == 1:
+            if str(var[0]) == '1':
                 _,c,j,i= var
                 c = float(c); j = int(i); i = int(i)
                 self.matrix[i-1] = self.matrix[i-1] + c*self.matrix[j-1]
@@ -141,7 +141,7 @@ class ElementaryOps(object):
                     print('\n'.join(['\t'.join([str(round(cell, 2)) for cell in row]) for row in self.matrix]) + "\n")
                 else:
                     return self.matrix
-            elif str(var[0]) == 2:
+            elif str(var[0]) == '2':
                 _,i,c = var
                 c = float(c); i = int(i)
                 self.matrix[i-1] = c*self.matrix[i-1]
@@ -151,7 +151,7 @@ class ElementaryOps(object):
                     print('\n'.join(['\t'.join([str(round(cell, 2)) for cell in row]) for row in self.matrix]) + "\n")
                 else:
                     return self.matrix
-            elif str(var[0]) == 3:
+            elif str(var[0]) == '3':
                 _,i,j = var
                 i = int(i); j = int(j)
                 self.matrix[[i-1, j-1]] = self.matrix[[j-1, i-1]]
