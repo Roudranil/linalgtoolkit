@@ -1,6 +1,6 @@
 """
 Module to implement operations relating to systems of linear equations and matrices.
-
+ 
 Classes:
 -------
 1. Elementary Operation calculator: Interactively performs elementary operations on matrix A of shape (m,n).
